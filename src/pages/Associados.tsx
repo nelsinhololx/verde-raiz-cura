@@ -3,17 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, FileText, Heart, Users, CheckCircle } from "lucide-react";
+import { FileText, Heart, Users, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Associados = () => {
   const benefits = [
-    {
-      icon: Shield,
-      title: "Suporte Jurídico Completo",
-      description: "Orientação legal especializada para uso medicinal da cannabis"
-    },
     {
       icon: FileText,
       title: "Óleos Certificados",
@@ -28,6 +23,29 @@ const Associados = () => {
       icon: Users,
       title: "Comunidade Acolhedora",
       description: "Grupos de apoio e encontros educativos regulares"
+    }
+  ];
+
+  const mensalidades = [
+    {
+      categoria: "Estudante",
+      valor: "R$ 50,00",
+      descricao: "Para estudantes com comprovação"
+    },
+    {
+      categoria: "Associado Regular",
+      valor: "R$ 100,00",
+      descricao: "Mensalidade padrão para associados"
+    },
+    {
+      categoria: "Associado Contribuinte",
+      valor: "R$ 200,00",
+      descricao: "Para quem deseja contribuir mais com a causa"
+    },
+    {
+      categoria: "Associado Benfeitor",
+      valor: "R$ 500,00",
+      descricao: "Apoio máximo à associação e suas atividades"
     }
   ];
 
@@ -48,7 +66,7 @@ const Associados = () => {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                   Junte-se à maior rede de apoio à cannabis medicinal do Brasil. 
-                  Acesso legal, seguro e com total suporte científico e jurídico.
+                  Acesso legal, seguro e com total suporte científico e médico.
                 </p>
                 
                 <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -127,6 +145,44 @@ const Associados = () => {
           </div>
         </section>
 
+        {/* Mensalidades Section */}
+        <section className="py-16 bg-gradient-to-r from-green-50 to-amber-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Mensalidades
+              </h2>
+              <p className="text-xl text-gray-600">
+                Escolha a categoria que melhor se adequa ao seu perfil
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {mensalidades.map((mensalidade, index) => (
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                      {mensalidade.categoria}
+                    </h3>
+                    <div className="text-3xl font-bold text-verde mb-3">
+                      {mensalidade.valor}
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      {mensalidade.descricao}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <p className="text-gray-600">
+                * Valores mensais. Estudantes devem apresentar comprovação de matrícula.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Benefits Section */}
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4">
@@ -139,7 +195,7 @@ const Associados = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => {
                 const IconComponent = benefit.icon;
                 return (
