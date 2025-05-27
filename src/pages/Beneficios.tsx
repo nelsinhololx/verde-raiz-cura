@@ -1,7 +1,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Shield, FileText, Heart, Users, Award, CheckCircle, Stethoscope, Book } from "lucide-react";
+import { Shield, FileText, Heart, Users, Award, CheckCircle, Stethoscope, Book, Brain, Zap } from "lucide-react";
 
 const Beneficios = () => {
   const beneficiosAssociados = [
@@ -50,17 +50,25 @@ const Beneficios = () => {
     }
   ];
 
-  const condicoesTratadas = [
-    "Epilepsia refratária",
-    "Dor crônica",
-    "Ansiedade e depressão",
-    "Autismo (TEA)",
-    "Fibromialgia",
-    "Artrite e artrose",
-    "Insônia",
-    "Síndrome de Dravet",
-    "Esclerose múltipla",
-    "Câncer (efeitos colaterais)"
+  const condicoesNeurologicas = [
+    "Epilepsia refratária (ex: Síndrome de Dravet, Lennox-Gastaut)",
+    "Transtorno do espectro autista (TEA) – melhora na comunicação, sono e redução de agressividade",
+    "Transtorno de Déficit de Atenção e Hiperatividade (TDAH)",
+    "Ansiedade generalizada, pânico e fobia social",
+    "Transtorno do estresse pós-traumático (TEPT)",
+    "Depressão leve a moderada",
+    "Insônia crônica ou relacionada à dor/ansiedade",
+    "Doença de Alzheimer – efeitos neuroprotetores",
+    "Doença de Parkinson – controle de tremores e rigidez",
+    "Esclerose Múltipla – melhora da espasticidade"
+  ];
+
+  const condicoesDorInflamacao = [
+    "Dores crônicas e neuropáticas (ex: fibromialgia, neuralgia do trigêmeo)",
+    "Artrite e artrose – ação anti-inflamatória",
+    "Dor oncológica – especialmente em cuidados paliativos",
+    "Enxaqueca crônica",
+    "Endometriose e cólicas intensas"
   ];
 
   return (
@@ -167,16 +175,52 @@ const Beneficios = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {condicoesTratadas.map((condicao, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200"
-                >
-                  <CheckCircle className="w-5 h-5 text-verde mr-3 flex-shrink-0" />
-                  <span className="text-gray-800 font-medium">{condicao}</span>
+            {/* Condições Neurológicas */}
+            <div className="mb-12">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                  <Brain className="w-6 h-6 text-white" />
                 </div>
-              ))}
+                <h3 className="text-2xl font-bold text-gray-800">
+                  🧠 Neurológicas e Neuropsiquiátricas
+                </h3>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                {condicoesNeurologicas.map((condicao, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-start p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200"
+                  >
+                    <CheckCircle className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 font-medium">{condicao}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Condições de Dor e Inflamação */}
+            <div className="mb-8">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl flex items-center justify-center mr-4">
+                  <Zap className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800">
+                  🩺 Dor e Inflamação
+                </h3>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                {condicoesDorInflamacao.map((condicao, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-start p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200"
+                  >
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 font-medium">{condicao}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="text-center mt-8">
