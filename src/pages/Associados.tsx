@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -33,6 +34,8 @@ const Associados = () => {
     {
       titulo: "Plano Mensal",
       descricao: "Flexibilidade para começar sua jornada",
+      valor: "R$ 29,90",
+      periodo: "/mês",
       beneficios: [
         "Flexibilidade de pagamento mensal",
         "Acesso a todos os benefícios de associados",
@@ -43,6 +46,8 @@ const Associados = () => {
     {
       titulo: "Plano Anual",
       descricao: "Maior economia e compromisso",
+      valor: "R$ 328,90",
+      periodo: "/ano",
       beneficios: [
         "Economize 1 parcela no ano",
         "Tratamento garantido por 1 ano",
@@ -58,7 +63,6 @@ const Associados = () => {
         <Header />
         
         <main className="pt-20">
-          {/* Header com botão voltar */}
           <section className="py-8 px-4">
             <div className="max-w-6xl mx-auto">
               <Button 
@@ -77,7 +81,6 @@ const Associados = () => {
             </div>
           </section>
 
-          {/* Planos de Associação */}
           <section className="py-16">
             <div className="max-w-5xl mx-auto px-4">
               <div className="grid md:grid-cols-2 gap-8">
@@ -97,6 +100,10 @@ const Associados = () => {
                       <CardDescription className="text-gray-600 text-lg">
                         {plano.descricao}
                       </CardDescription>
+                      <div className="mt-4">
+                        <span className="text-3xl font-bold text-verde">{plano.valor}</span>
+                        <span className="text-gray-600">{plano.periodo}</span>
+                      </div>
                     </CardHeader>
                     <CardContent className="p-6">
                       <ul className="space-y-4 mb-8">
@@ -146,7 +153,6 @@ const Associados = () => {
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left side - Content */}
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                   {isLogin ? 'Área do Associado' : 'Faça Parte da'}
@@ -188,7 +194,6 @@ const Associados = () => {
                 )}
               </div>
 
-              {/* Right side - Login/Registration Form */}
               <Card className="shadow-xl">
                 <CardHeader className="bg-verde text-white rounded-t-lg">
                   <CardTitle className="text-2xl text-center">
@@ -201,7 +206,6 @@ const Associados = () => {
                 <CardContent className="p-6">
                   <form className="space-y-4">
                     {isLogin ? (
-                      // Login Form
                       <>
                         <div>
                           <Label htmlFor="email" className="flex items-center">
@@ -230,7 +234,6 @@ const Associados = () => {
                         </div>
                       </>
                     ) : (
-                      // Registration Form
                       <>
                         <div className="grid sm:grid-cols-2 gap-4">
                           <div>
@@ -324,7 +327,6 @@ const Associados = () => {
           </div>
         </section>
 
-        {/* Seja um Associado Section */}
         <section className="py-16 bg-gradient-to-r from-green-100 to-green-50">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -353,6 +355,10 @@ const Associados = () => {
                     <CardDescription className="text-gray-600 text-lg">
                       {plano.descricao}
                     </CardDescription>
+                    <div className="mt-4">
+                      <span className="text-3xl font-bold text-verde">{plano.valor}</span>
+                      <span className="text-gray-600">{plano.periodo}</span>
+                    </div>
                   </CardHeader>
                   <CardContent className="p-6">
                     <ul className="space-y-4 mb-8">
@@ -388,7 +394,6 @@ const Associados = () => {
           </div>
         </section>
 
-        {/* Benefits Section */}
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
