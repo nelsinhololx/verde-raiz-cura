@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,30 +29,26 @@ const Associados = () => {
     }
   ];
 
-  const mensalidades = [
+  const planos = [
     {
-      categoria: "Estudante",
-      valor: "R$ 50,00",
-      descricao: "Para estudantes com comprovação de matrícula",
-      beneficios: ["Acesso aos óleos", "Consulta médica mensal", "Grupo de apoio"]
+      titulo: "Plano Mensal",
+      descricao: "Flexibilidade para começar sua jornada",
+      beneficios: [
+        "Flexibilidade de pagamento mensal",
+        "Acesso a todos os benefícios de associados",
+        "Sem compromisso de longo prazo",
+        "Fortalecimento da causa da Verde Ancestral"
+      ]
     },
     {
-      categoria: "Associado Regular",
-      valor: "R$ 100,00",
-      descricao: "Mensalidade padrão para associados",
-      beneficios: ["Todos os benefícios", "Acompanhamento personalizado", "Suporte jurídico"]
-    },
-    {
-      categoria: "Associado Contribuinte",
-      valor: "R$ 200,00",
-      descricao: "Para quem deseja contribuir mais com a causa",
-      beneficios: ["Benefícios premium", "Consultas ilimitadas", "Acesso VIP a eventos"]
-    },
-    {
-      categoria: "Associado Benfeitor",
-      valor: "R$ 500,00",
-      descricao: "Apoio máximo à associação e suas atividades",
-      beneficios: ["Todos os benefícios", "Mentoria exclusiva", "Participação em pesquisas"]
+      titulo: "Plano Anual",
+      descricao: "Maior economia e compromisso",
+      beneficios: [
+        "Economize 1 parcela no ano",
+        "Tratamento garantido por 1 ano",
+        "Maior compromisso com a causa",
+        "Fortalecimento da APEPI"
+      ]
     }
   ];
 
@@ -73,42 +68,42 @@ const Associados = () => {
               >
                 ← Voltar ao Login
               </Button>
-              <h1 className="text-4xl font-bold text-green-800 text-center">
-                Escolha seu Plano de Associação
+              <h1 className="text-4xl font-bold text-green-800 text-center mb-4">
+                Seja um Associado
               </h1>
+              <p className="text-xl text-gray-600 text-center">
+                Escolha o plano que melhor se adapta às suas necessidades
+              </p>
             </div>
           </section>
 
-          {/* Planos de Mensalidade */}
+          {/* Planos de Associação */}
           <section className="py-16">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {mensalidades.map((mensalidade, index) => (
+            <div className="max-w-5xl mx-auto px-4">
+              <div className="grid md:grid-cols-2 gap-8">
+                {planos.map((plano, index) => (
                   <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-all duration-300 ${
                     index === 1 ? 'ring-2 ring-verde scale-105' : ''
                   }`}>
                     {index === 1 && (
                       <div className="absolute top-0 left-0 right-0 bg-verde text-white text-center py-2 text-sm font-semibold">
-                        MAIS POPULAR
+                        MAIS ECONÔMICO
                       </div>
                     )}
                     <CardHeader className={`text-center ${index === 1 ? 'pt-12' : 'pt-6'}`}>
-                      <CardTitle className="text-xl text-gray-800">
-                        {mensalidade.categoria}
+                      <CardTitle className="text-2xl text-gray-800">
+                        {plano.titulo}
                       </CardTitle>
-                      <div className="text-3xl font-bold text-verde">
-                        {mensalidade.valor}
-                      </div>
-                      <CardDescription className="text-gray-600">
-                        {mensalidade.descricao}
+                      <CardDescription className="text-gray-600 text-lg">
+                        {plano.descricao}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="p-6">
-                      <ul className="space-y-3 mb-6">
-                        {mensalidade.beneficios.map((beneficio, idx) => (
-                          <li key={idx} className="flex items-center">
-                            <CheckCircle className="w-4 h-4 text-verde mr-2 flex-shrink-0" />
-                            <span className="text-sm text-gray-700">{beneficio}</span>
+                      <ul className="space-y-4 mb-8">
+                        {plano.beneficios.map((beneficio, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <CheckCircle className="w-5 h-5 text-verde mr-3 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-700">{beneficio}</span>
                           </li>
                         ))}
                       </ul>
@@ -119,7 +114,7 @@ const Associados = () => {
                             : 'bg-gray-700 hover:bg-gray-800'
                         }`}
                       >
-                        Escolher Plano
+                        Escolher {plano.titulo}
                       </Button>
                     </CardContent>
                   </Card>
@@ -128,10 +123,10 @@ const Associados = () => {
               
               <div className="text-center mt-12">
                 <p className="text-gray-600 mb-4">
-                  * Valores mensais. Estudantes devem apresentar comprovação de matrícula.
+                  * Todos os planos incluem acesso aos óleos certificados e acompanhamento médico.
                 </p>
                 <p className="text-sm text-gray-500">
-                  Todas as mensalidades incluem acesso aos óleos certificados e acompanhamento médico básico.
+                  Entre em contato para mais informações sobre condições especiais e descontos.
                 </p>
               </div>
             </div>
@@ -188,7 +183,7 @@ const Associados = () => {
                     onClick={() => setShowMembership(true)}
                     className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full"
                   >
-                    Ver Planos de Associação
+                    Seja um Associado
                   </Button>
                 )}
               </div>
