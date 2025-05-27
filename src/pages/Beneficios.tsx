@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, FileText, Heart, Users, Award, CheckCircle, Stethoscope, Book, Brain, Zap } from "lucide-react";
@@ -182,7 +181,7 @@ const Beneficios = () => {
                   <Brain className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800">
-                  🧠 Neurológicas e Neuropsiquiátricas
+                  Neurológicas e Neuropsiquiátricas
                 </h3>
               </div>
               
@@ -206,7 +205,7 @@ const Beneficios = () => {
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800">
-                  🩺 Dor e Inflamação
+                  Dor e Inflamação
                 </h3>
               </div>
               
