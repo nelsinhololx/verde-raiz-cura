@@ -324,6 +324,70 @@ const Associados = () => {
           </div>
         </section>
 
+        {/* Seja um Associado Section */}
+        <section className="py-16 bg-gradient-to-r from-green-100 to-green-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">
+                Seja um Associado
+              </h2>
+              <p className="text-xl text-gray-600">
+                Escolha o plano que melhor se adapta às suas necessidades
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {planos.map((plano, index) => (
+                <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-all duration-300 ${
+                  index === 1 ? 'ring-2 ring-verde scale-105' : ''
+                }`}>
+                  {index === 1 && (
+                    <div className="absolute top-0 left-0 right-0 bg-verde text-white text-center py-2 text-sm font-semibold">
+                      MAIS ECONÔMICO
+                    </div>
+                  )}
+                  <CardHeader className={`text-center ${index === 1 ? 'pt-12' : 'pt-6'}`}>
+                    <CardTitle className="text-2xl text-gray-800">
+                      {plano.titulo}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 text-lg">
+                      {plano.descricao}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <ul className="space-y-4 mb-8">
+                      {plano.beneficios.map((beneficio, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-verde mr-3 flex-shrink-0 mt-0.5" />
+                          <span className="text-gray-700">{beneficio}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button 
+                      className={`w-full ${
+                        index === 1 
+                          ? 'bg-verde hover:bg-verde/90' 
+                          : 'bg-gray-700 hover:bg-gray-800'
+                      }`}
+                    >
+                      Escolher {plano.titulo}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-4">
+                * Todos os planos incluem acesso aos óleos certificados e acompanhamento médico.
+              </p>
+              <p className="text-sm text-gray-500">
+                Entre em contato para mais informações sobre condições especiais e descontos.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Benefits Section */}
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4">
