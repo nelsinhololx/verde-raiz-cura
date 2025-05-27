@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -85,15 +84,8 @@ const Associados = () => {
             <div className="max-w-5xl mx-auto px-4">
               <div className="grid md:grid-cols-2 gap-8">
                 {planos.map((plano, index) => (
-                  <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-all duration-300 ${
-                    index === 1 ? 'ring-2 ring-verde scale-105' : ''
-                  }`}>
-                    {index === 1 && (
-                      <div className="absolute top-0 left-0 right-0 bg-verde text-white text-center py-2 text-sm font-semibold">
-                        MAIS ECONÔMICO
-                      </div>
-                    )}
-                    <CardHeader className={`text-center ${index === 1 ? 'pt-12' : 'pt-6'}`}>
+                  <Card key={index} className="relative overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <CardHeader className="text-center pt-6">
                       <CardTitle className="text-2xl text-gray-800">
                         {plano.titulo}
                       </CardTitle>
@@ -114,13 +106,7 @@ const Associados = () => {
                           </li>
                         ))}
                       </ul>
-                      <Button 
-                        className={`w-full ${
-                          index === 1 
-                            ? 'bg-verde hover:bg-verde/90' 
-                            : 'bg-gray-700 hover:bg-gray-800'
-                        }`}
-                      >
+                      <Button className="w-full bg-gray-700 hover:bg-gray-800">
                         Escolher {plano.titulo}
                       </Button>
                     </CardContent>
@@ -340,15 +326,8 @@ const Associados = () => {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {planos.map((plano, index) => (
-                <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-all duration-300 ${
-                  index === 1 ? 'ring-2 ring-verde scale-105' : ''
-                }`}>
-                  {index === 1 && (
-                    <div className="absolute top-0 left-0 right-0 bg-verde text-white text-center py-2 text-sm font-semibold">
-                      MAIS ECONÔMICO
-                    </div>
-                  )}
-                  <CardHeader className={`text-center ${index === 1 ? 'pt-12' : 'pt-6'}`}>
+                <Card key={index} className="relative overflow-hidden hover:shadow-xl transition-all duration-300">
+                  <CardHeader className="text-center pt-6">
                     <CardTitle className="text-2xl text-gray-800">
                       {plano.titulo}
                     </CardTitle>
@@ -370,11 +349,7 @@ const Associados = () => {
                       ))}
                     </ul>
                     <Button 
-                      className={`w-full ${
-                        index === 1 
-                          ? 'bg-verde hover:bg-verde/90' 
-                          : 'bg-gray-700 hover:bg-gray-800'
-                      }`}
+                      className="w-full bg-gray-700 hover:bg-gray-800"
                     >
                       Escolher {plano.titulo}
                     </Button>
