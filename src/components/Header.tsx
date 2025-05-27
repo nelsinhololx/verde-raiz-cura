@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { User, Menu } from "lucide-react";
+import { User, Menu, Leaf } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -13,20 +13,23 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-verde">
-              Verde Ancestral
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-verde-gradient rounded-full flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold text-verde">Verde Ancestral</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/#raizes-que-nutrem" className="text-gray-700 hover:text-verde transition-colors">
+            <Link to="/historia" className="text-gray-700 hover:text-verde transition-colors">
               Nossa História
             </Link>
-            <Link to="/#nossa-missao" className="text-gray-700 hover:text-verde transition-colors">
+            <Link to="/missao" className="text-gray-700 hover:text-verde transition-colors">
               Missão
             </Link>
-            <Link to="/#beneficios-associados" className="text-gray-700 hover:text-verde transition-colors">
+            <Link to="/beneficios" className="text-gray-700 hover:text-verde transition-colors">
               Benefícios
             </Link>
             <Link to="/associados" className="text-gray-700 hover:text-verde transition-colors">
@@ -36,10 +39,12 @@ const Header = () => {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="text-verde border-verde hover:bg-verde hover:text-white">
-              <User className="w-4 h-4 mr-2" />
-              Login
-            </Button>
+            <Link to="/associados">
+              <Button variant="outline" size="sm" className="text-verde border-verde hover:bg-verde hover:text-white">
+                <User className="w-4 h-4 mr-2" />
+                Login
+              </Button>
+            </Link>
             <Link to="/associados">
               <Button size="sm" className="bg-verde hover:bg-verde/90">
                 Seja Associado
@@ -63,25 +68,27 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-3">
-              <Link to="/#raizes-que-nutrem" className="text-gray-700 hover:text-verde transition-colors">
+              <Link to="/historia" className="text-gray-700 hover:text-verde transition-colors">
                 Nossa História
               </Link>
-              <Link to="/#nossa-missao" className="text-gray-700 hover:text-verde transition-colors">
+              <Link to="/missao" className="text-gray-700 hover:text-verde transition-colors">
                 Missão
               </Link>
-              <Link to="/#beneficios-associados" className="text-gray-700 hover:text-verde transition-colors">
+              <Link to="/beneficios" className="text-gray-700 hover:text-verde transition-colors">
                 Benefícios
               </Link>
               <Link to="/associados" className="text-gray-700 hover:text-verde transition-colors">
                 Área do Associado
               </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t border-gray-200">
-                <Button variant="outline" size="sm" className="text-verde border-verde">
-                  <User className="w-4 h-4 mr-2" />
-                  Login
-                </Button>
                 <Link to="/associados">
-                  <Button size="sm" className="bg-verde hover:bg-verde/90">
+                  <Button variant="outline" size="sm" className="text-verde border-verde w-full">
+                    <User className="w-4 h-4 mr-2" />
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/associados">
+                  <Button size="sm" className="bg-verde hover:bg-verde/90 w-full">
                     Seja Associado
                   </Button>
                 </Link>

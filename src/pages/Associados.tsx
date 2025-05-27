@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Heart, Users, CheckCircle } from "lucide-react";
+import { FileText, Heart, Users, CheckCircle, User, Mail, Lock, Phone, MapPin, Calendar } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 const Associados = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [showMembership, setShowMembership] = useState(false);
+
   const benefits = [
     {
       icon: FileText,
@@ -30,43 +34,134 @@ const Associados = () => {
     {
       categoria: "Estudante",
       valor: "R$ 50,00",
-      descricao: "Para estudantes com comprovação"
+      descricao: "Para estudantes com comprovação de matrícula",
+      beneficios: ["Acesso aos óleos", "Consulta médica mensal", "Grupo de apoio"]
     },
     {
       categoria: "Associado Regular",
       valor: "R$ 100,00",
-      descricao: "Mensalidade padrão para associados"
+      descricao: "Mensalidade padrão para associados",
+      beneficios: ["Todos os benefícios", "Acompanhamento personalizado", "Suporte jurídico"]
     },
     {
       categoria: "Associado Contribuinte",
       valor: "R$ 200,00",
-      descricao: "Para quem deseja contribuir mais com a causa"
+      descricao: "Para quem deseja contribuir mais com a causa",
+      beneficios: ["Benefícios premium", "Consultas ilimitadas", "Acesso VIP a eventos"]
     },
     {
       categoria: "Associado Benfeitor",
       valor: "R$ 500,00",
-      descricao: "Apoio máximo à associação e suas atividades"
+      descricao: "Apoio máximo à associação e suas atividades",
+      beneficios: ["Todos os benefícios", "Mentoria exclusiva", "Participação em pesquisas"]
     }
   ];
+
+  if (showMembership) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+        <Header />
+        
+        <main className="pt-20">
+          {/* Header com botão voltar */}
+          <section className="py-8 px-4">
+            <div className="max-w-6xl mx-auto">
+              <Button 
+                variant="outline" 
+                onClick={() => setShowMembership(false)}
+                className="mb-4"
+              >
+                ← Voltar ao Login
+              </Button>
+              <h1 className="text-4xl font-bold text-green-800 text-center">
+                Escolha seu Plano de Associação
+              </h1>
+            </div>
+          </section>
+
+          {/* Planos de Mensalidade */}
+          <section className="py-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {mensalidades.map((mensalidade, index) => (
+                  <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-all duration-300 ${
+                    index === 1 ? 'ring-2 ring-verde scale-105' : ''
+                  }`}>
+                    {index === 1 && (
+                      <div className="absolute top-0 left-0 right-0 bg-verde text-white text-center py-2 text-sm font-semibold">
+                        MAIS POPULAR
+                      </div>
+                    )}
+                    <CardHeader className={`text-center ${index === 1 ? 'pt-12' : 'pt-6'}`}>
+                      <CardTitle className="text-xl text-gray-800">
+                        {mensalidade.categoria}
+                      </CardTitle>
+                      <div className="text-3xl font-bold text-verde">
+                        {mensalidade.valor}
+                      </div>
+                      <CardDescription className="text-gray-600">
+                        {mensalidade.descricao}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                      <ul className="space-y-3 mb-6">
+                        {mensalidade.beneficios.map((beneficio, idx) => (
+                          <li key={idx} className="flex items-center">
+                            <CheckCircle className="w-4 h-4 text-verde mr-2 flex-shrink-0" />
+                            <span className="text-sm text-gray-700">{beneficio}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button 
+                        className={`w-full ${
+                          index === 1 
+                            ? 'bg-verde hover:bg-verde/90' 
+                            : 'bg-gray-700 hover:bg-gray-800'
+                        }`}
+                      >
+                        Escolher Plano
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              
+              <div className="text-center mt-12">
+                <p className="text-gray-600 mb-4">
+                  * Valores mensais. Estudantes devem apresentar comprovação de matrícula.
+                </p>
+                <p className="text-sm text-gray-500">
+                  Todas as mensalidades incluem acesso aos óleos certificados e acompanhamento médico básico.
+                </p>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       <Header />
       
       <main className="pt-20">
-        {/* Hero Section */}
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left side - Content */}
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                  Faça Parte da
+                  {isLogin ? 'Área do Associado' : 'Faça Parte da'}
                   <span className="text-verde block">Verde Ancestral</span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Junte-se à maior rede de apoio à cannabis medicinal do Brasil. 
-                  Acesso legal, seguro e com total suporte científico e médico.
+                  {isLogin 
+                    ? 'Acesse sua conta para gerenciar seu tratamento e acompanhar seu progresso.'
+                    : 'Junte-se à maior rede de apoio à cannabis medicinal do Brasil. Acesso legal, seguro e com total suporte científico e médico.'
+                  }
                 </p>
                 
                 <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -87,98 +182,149 @@ const Associados = () => {
                     <span className="text-gray-700">Sem Fins Lucrativos</span>
                   </div>
                 </div>
+
+                {!isLogin && (
+                  <Button 
+                    onClick={() => setShowMembership(true)}
+                    className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full"
+                  >
+                    Ver Planos de Associação
+                  </Button>
+                )}
               </div>
 
-              {/* Right side - Registration Form */}
+              {/* Right side - Login/Registration Form */}
               <Card className="shadow-xl">
                 <CardHeader className="bg-verde text-white rounded-t-lg">
-                  <CardTitle className="text-2xl text-center">Cadastro de Associado</CardTitle>
+                  <CardTitle className="text-2xl text-center">
+                    {isLogin ? 'Login do Associado' : 'Cadastro de Associado'}
+                  </CardTitle>
                   <CardDescription className="text-green-100 text-center">
-                    Preencha seus dados para começar
+                    {isLogin ? 'Acesse sua conta' : 'Preencha seus dados para começar'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-6">
                   <form className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="nome">Nome Completo</Label>
-                        <Input id="nome" placeholder="Seu nome completo" />
-                      </div>
-                      <div>
-                        <Label htmlFor="cpf">CPF</Label>
-                        <Input id="cpf" placeholder="000.000.000-00" />
-                      </div>
+                    {isLogin ? (
+                      // Login Form
+                      <>
+                        <div>
+                          <Label htmlFor="email" className="flex items-center">
+                            <Mail className="w-4 h-4 mr-2" />
+                            E-mail
+                          </Label>
+                          <Input id="email" type="email" placeholder="seu@email.com" />
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="password" className="flex items-center">
+                            <Lock className="w-4 h-4 mr-2" />
+                            Senha
+                          </Label>
+                          <Input id="password" type="password" placeholder="••••••••" />
+                        </div>
+                        
+                        <Button className="w-full bg-verde hover:bg-verde/90 py-3 text-lg">
+                          Entrar
+                        </Button>
+                        
+                        <div className="text-center">
+                          <a href="#" className="text-verde text-sm hover:underline">
+                            Esqueci minha senha
+                          </a>
+                        </div>
+                      </>
+                    ) : (
+                      // Registration Form
+                      <>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="nome" className="flex items-center">
+                              <User className="w-4 h-4 mr-2" />
+                              Nome Completo
+                            </Label>
+                            <Input id="nome" placeholder="Seu nome completo" />
+                          </div>
+                          <div>
+                            <Label htmlFor="cpf">CPF</Label>
+                            <Input id="cpf" placeholder="000.000.000-00" />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="email" className="flex items-center">
+                            <Mail className="w-4 h-4 mr-2" />
+                            E-mail
+                          </Label>
+                          <Input id="email" type="email" placeholder="seu@email.com" />
+                        </div>
+                        
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="telefone" className="flex items-center">
+                              <Phone className="w-4 h-4 mr-2" />
+                              Telefone
+                            </Label>
+                            <Input id="telefone" placeholder="(11) 99999-9999" />
+                          </div>
+                          <div>
+                            <Label htmlFor="nascimento" className="flex items-center">
+                              <Calendar className="w-4 h-4 mr-2" />
+                              Data de Nascimento
+                            </Label>
+                            <Input id="nascimento" type="date" />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="cep" className="flex items-center">
+                            <MapPin className="w-4 h-4 mr-2" />
+                            CEP
+                          </Label>
+                          <Input id="cep" placeholder="00000-000" />
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="condicao">Condição Médica (opcional)</Label>
+                          <Input id="condicao" placeholder="Descreva brevemente sua condição" />
+                        </div>
+                        
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="password" className="flex items-center">
+                              <Lock className="w-4 h-4 mr-2" />
+                              Senha
+                            </Label>
+                            <Input id="password" type="password" placeholder="••••••••" />
+                          </div>
+                          <div>
+                            <Label htmlFor="confirmPassword">Confirmar Senha</Label>
+                            <Input id="confirmPassword" type="password" placeholder="••••••••" />
+                          </div>
+                        </div>
+                        
+                        <Button className="w-full bg-verde hover:bg-verde/90 py-3 text-lg">
+                          Criar Conta
+                        </Button>
+                      </>
+                    )}
+                    
+                    <div className="text-center pt-4 border-t border-gray-200">
+                      <p className="text-sm text-gray-600">
+                        {isLogin ? 'Ainda não é associado?' : 'Já possui uma conta?'}
+                      </p>
+                      <Button 
+                        type="button"
+                        variant="link" 
+                        className="text-verde hover:text-verde/80"
+                        onClick={() => setIsLogin(!isLogin)}
+                      >
+                        {isLogin ? 'Cadastre-se aqui' : 'Faça login aqui'}
+                      </Button>
                     </div>
-                    
-                    <div>
-                      <Label htmlFor="email">E-mail</Label>
-                      <Input id="email" type="email" placeholder="seu@email.com" />
-                    </div>
-                    
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="telefone">Telefone</Label>
-                        <Input id="telefone" placeholder="(11) 99999-9999" />
-                      </div>
-                      <div>
-                        <Label htmlFor="cep">CEP</Label>
-                        <Input id="cep" placeholder="00000-000" />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="condicao">Condição Médica (opcional)</Label>
-                      <Input id="condicao" placeholder="Descreva brevemente sua condição" />
-                    </div>
-                    
-                    <Button className="w-full bg-verde hover:bg-verde/90 py-3 text-lg">
-                      Enviar Solicitação
-                    </Button>
-                    
-                    <p className="text-sm text-gray-600 text-center">
-                      Após o envio, nossa equipe entrará em contato em até 24h
-                    </p>
                   </form>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Mensalidades Section */}
-        <section className="py-16 bg-gradient-to-r from-green-50 to-amber-50">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Mensalidades
-              </h2>
-              <p className="text-xl text-gray-600">
-                Escolha a categoria que melhor se adequa ao seu perfil
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {mensalidades.map((mensalidade, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                      {mensalidade.categoria}
-                    </h3>
-                    <div className="text-3xl font-bold text-verde mb-3">
-                      {mensalidade.valor}
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      {mensalidade.descricao}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            
-            <div className="text-center mt-8">
-              <p className="text-gray-600">
-                * Valores mensais. Estudantes devem apresentar comprovação de matrícula.
-              </p>
             </div>
           </div>
         </section>
@@ -212,58 +358,6 @@ const Associados = () => {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-16 bg-gradient-to-r from-green-50 to-amber-50">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Como Funciona
-              </h2>
-              <p className="text-xl text-gray-600">
-                Processo simples e transparente
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-verde text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                  1
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                  Cadastro
-                </h3>
-                <p className="text-gray-600">
-                  Preencha o formulário com seus dados pessoais e informações médicas
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-12 h-12 bg-verde text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                  2
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                  Avaliação
-                </h3>
-                <p className="text-gray-600">
-                  Nossa equipe médica avalia seu caso e define o melhor tratamento
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-12 h-12 bg-verde text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                  3
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                  Acompanhamento
-                </h3>
-                <p className="text-gray-600">
-                  Receba suporte contínuo e acesso aos nossos produtos certificados
-                </p>
-              </div>
             </div>
           </div>
         </section>

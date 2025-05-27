@@ -37,7 +37,7 @@ const HeroSection = () => {
 
         <div className="animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/#historia">
+            <Link to="/historia">
               <Button 
                 size="lg" 
                 className="bg-white text-green-800 hover:bg-green-50 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
