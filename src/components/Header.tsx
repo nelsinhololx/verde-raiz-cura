@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { User, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-verde">Verde Ancestral</h1>
+            <Link to="/" className="text-2xl font-bold text-verde">
+              Verde Ancestral
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -26,9 +29,9 @@ const Header = () => {
             <a href="#beneficios" className="text-gray-700 hover:text-verde transition-colors">
               Benefícios
             </a>
-            <a href="/associados" className="text-gray-700 hover:text-verde transition-colors">
+            <Link to="/associados" className="text-gray-700 hover:text-verde transition-colors">
               Área do Associado
-            </a>
+            </Link>
           </nav>
 
           {/* Action Buttons */}
@@ -67,9 +70,9 @@ const Header = () => {
               <a href="#beneficios" className="text-gray-700 hover:text-verde transition-colors">
                 Benefícios
               </a>
-              <a href="/associados" className="text-gray-700 hover:text-verde transition-colors">
+              <Link to="/associados" className="text-gray-700 hover:text-verde transition-colors">
                 Área do Associado
-              </a>
+              </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t border-gray-200">
                 <Button variant="outline" size="sm" className="text-verde border-verde">
                   <User className="w-4 h-4 mr-2" />
